@@ -1,1 +1,1 @@
-# nike-snkrs-clone
+# Nike SNKRS Clone
