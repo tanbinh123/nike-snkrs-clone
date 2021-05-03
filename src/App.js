@@ -1,9 +1,17 @@
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Home from './components/Home';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <h1>Nike SNKRS</h1>
+      <Router>
+        <Switch>
+          <Route exact path='/'>
+            <Home />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
