@@ -1,12 +1,14 @@
 import styled from 'styled-components';
 import Menu from './Menu';
 import ProductWall from './ProductWall';
+import Footer from './Footer';
 
 const Home = (props) => {
     return(
         <Container>
             <Menu />
             <ProductWall />
+            <Footer />
         </Container>
     )
 }
