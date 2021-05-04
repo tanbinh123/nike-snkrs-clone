@@ -37,7 +37,7 @@ const Footer = (props) => {
                 </Content>
                 <Legal>
                     <div id='credits'>
-                        <span>Clone of Nike SNKRS made by <a href='https://www.github.com/kareemelgendy'>Kareem Elgendy</a></span>
+                        <span>Clone of Nike SNKRS by <a href='https://www.github.com/kareemelgendy'>Kareem Elgendy</a></span>
                     </div>
                     <div id='other-links'>
                         <span>Guides</span>
