@@ -2,6 +2,24 @@ import styled from 'styled-components';
 
 const Menu = (props) => {
 
+    var links = document.querySelectorAll('#page');
+
+    function setActive(page) {
+        for (var i = 0; i < links.length; i++) {
+            if (links[i] === page) {
+                page.classList.toggle('active');
+            } else {
+                links[i].classList.remove('active');
+            }
+        }
+    }
+
+    for (var i = 0; i < links.length; i++) {
+        links[i].addEventListener('click', function() {
+            setActive(this);
+        });
+    }
+
     return(
         <Container>
             <Header>
@@ -21,9 +39,9 @@ const Menu = (props) => {
             <Navbar>
                 <img id='logo' src='/images/logo.svg' alt='logo' />
                 <ul className='nav'>
-                    <li><a active>Feed</a></li>
-                    <li><a>In Stock</a></li>
-                    <li><a>Upcoming</a></li>
+                    <li id='page'>Feed</li>
+                    <li id='page'>In Stock</li>
+                    <li id='page'>Upcoming</li>
                 </ul>
                 <img id='grid-icon' src='/images/grid-sm.svg' alt='logo' />
             </Navbar>
@@ -102,19 +120,20 @@ const Navbar = styled.div`
     }
 
     ul {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         list-style: none;
-        display: inline-block;
+        padding: 0;
 
         li {
-            display: inline-block;
-            margin: 0 20px;
-        }
-    }
+            margin-left: 10px;
+            margin-right: 10px;
 
-    a {
-        &:active {
-            border-bottom: 2px solid black;
-            line-height: 54px;
+            &:hover, .active { 
+                border-bottom: 2px solid black;
+                cursor: pointer;
+            }
         }
     }
 
