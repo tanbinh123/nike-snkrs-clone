@@ -35,6 +35,18 @@ const Product = ({ match }) => {
           <div className="checkout">Add to Bag</div>
         </Info>
       </Wrap>
+      <Wrap>
+        <WideGallery>
+          <img src={item.wideImg1} alt={item.name + " " + item.model} />
+          <img src={item.wideImg2} alt={item.name + " " + item.model} />
+          <img src={item.wideImg3} alt={item.name + " " + item.model} />
+          {item.wideImg4 == '' ? (
+            <img src="" alt="" />
+            ) : (
+            <img src={item.wideImg4} alt={item.name + " " + item.model} />
+          )}
+        </WideGallery>
+      </Wrap>
     </Container>
   );
 };
@@ -52,7 +64,7 @@ const Wrap = styled.div`
 `;
 
 const Gallery = styled.div`
-  height: 100vh;
+  height: 100%;
   width: 100%;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -75,10 +87,10 @@ const Info = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   text-align: center;
   padding: 25px;
+  margin-top: 15vh;
 
   .product {
     display: flex;
@@ -120,6 +132,15 @@ const Info = styled.div`
     &:hover {
       background-color: rgb(0, 0, 0, 0.8);
     }
+  }
+`;
+
+const WideGallery = styled.div`
+  width: 100%;
+
+  img {
+    margin-bottom: 20px;
+    object-fit: contain;
   }
 `;
 
