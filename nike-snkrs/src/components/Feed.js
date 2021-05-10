@@ -2,14 +2,13 @@ import styled from "styled-components";
 import { useState, useEffect } from "react";
 import Axios from "../Axios";
 import Card from "./ProductCard";
-import { Link } from "react-router-dom";
 
 const Feed = () => {
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [cards]);
 
   async function fetchData() {
     const response = await Axios.get("/snkrs");

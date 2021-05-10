@@ -140,6 +140,7 @@ const Navbar = styled.div`
     li {
       margin-left: 20px;
       margin-right: 20px;
+      border-bottom: 2px solid transparent;
 
       a {
         text-decoration: none;

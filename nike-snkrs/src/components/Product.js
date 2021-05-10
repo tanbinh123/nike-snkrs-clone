@@ -7,23 +7,29 @@ const Product = ({ match }) => {
 
   useEffect(() => {
     fetchItem();
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [item]);
 
-  const fetchItem = async () => {
+  async function fetchItem() {
     const response = await Axios.get(`/snkrs/${match.params.id}`);
     setItem(response.data);
-  };
+  }
+
+  // Wait until all items fetched
+  if (item.main === undefined) {
+    return <h1>Loading</h1>;
+  }
+
+  // Product title
+  const product = item.name + " " + item.model;
 
   return (
     <Container>
       <Wrap>
         <Gallery>
-          <img src={item.mainImg} alt={item.name + " " + item.model} />
-          <img src={item.prodImg1} alt={item.name + " " + item.model} />
-          <img src={item.prodImg2} alt={item.name + " " + item.model} />
-          <img src={item.prodImg3} alt={item.name + " " + item.model} />
-          <img src={item.prodImg4} alt={item.name + " " + item.model} />
-          <img src={item.prodImg5} alt={item.name + " " + item.model} />
+          {Object.values(item.main).map((prodImg) => (
+            <img src={prodImg} alt={product} />
+          ))}
         </Gallery>
         <Info>
           <p id="model">{item.model}</p>
@@ -37,14 +43,14 @@ const Product = ({ match }) => {
       </Wrap>
       <Wrap>
         <WideGallery>
-          <img src={item.wideImg1} alt={item.name + " " + item.model} />
+          {/* <img src={item.wideImg1} alt={item.name + " " + item.model} />
           <img src={item.wideImg2} alt={item.name + " " + item.model} />
           <img src={item.wideImg3} alt={item.name + " " + item.model} />
-          {item.wideImg4 == '' ? (
+          {item.wideImg4 === '' ? (
             <img src="" alt="" />
             ) : (
             <img src={item.wideImg4} alt={item.name + " " + item.model} />
-          )}
+          )} */}
         </WideGallery>
       </Wrap>
     </Container>
@@ -89,7 +95,7 @@ const Info = styled.div`
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 25px;
+  padding: 40px;
   margin-top: 15vh;
 
   .product {

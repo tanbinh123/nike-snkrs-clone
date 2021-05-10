@@ -68,7 +68,7 @@ const Container = styled.div`
 const Wrap = styled.div`
   margin: auto;
   padding: 40px;
-  width: 80%;
+  width: 100%;
 `;
 
 const Content = styled.div`

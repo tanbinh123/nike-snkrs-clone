@@ -3,34 +3,26 @@ import { Link } from "react-router-dom";
 
 const ProductCard = (props) => {
   const product = props.product;
-  console.log(props);
 
   return (
-    // <Link
-    //   to={{
-    //     pathname: `/product/${product._id}`,
-    //     state: {
-    //       id: product._id
-    //     },
-    //   }}
-    // >
     <Card>
       <Link to={`/product/${product._id}`}>
-        <img src={product.mainImg} alt={product.name + " " + product.model} />
+        <img src={product.main.img1} alt={product.name + " " + product.model} />
       </Link>
       <div className="prod-info">
         <span id="model">{product.model}</span>
         <span id="collection">{product.name}</span>
         <Link to={`/product/${product._id}`}>
-          {product.inventory === "IS" ? (
-            <button>Add to Bag</button>
+          {product.availability === "Sold Out" ? (
+            <button id="cta-btn" className="sold-out">
+              {product.availability}
+            </button>
           ) : (
-            <button>Sold Out</button>
+            <button id="cta-btn">{product.availability}</button>
           )}
         </Link>
       </div>
     </Card>
-    // </Link>
   );
 };
 
@@ -77,7 +69,6 @@ const Card = styled.div`
 
   &:hover {
     transition: opacity 500ms ease-in-out 0s;
-    cursor: pointer;
 
     span {
       display: none;
@@ -92,6 +83,20 @@ const Card = styled.div`
         background-color: rgb(0, 0, 0, 0.8);
         cursor: pointer;
       }
+    }
+
+    .sold-out {
+      background-color: #f3f3f3;
+      color: rgb(0, 0, 0, 0.2);
+      cursor: pointer;
+
+      &:hover {
+        background-color: #f3f3f3;
+      }
+    }
+
+    .post {
+      display: block;
     }
   }
 `;

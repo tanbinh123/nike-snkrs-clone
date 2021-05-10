@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
-import express, { request, response } from "express";
+import express from "express";
 import Cors from "cors";
-import Card from "./dbCard.js";
+import Product from "./schema.js";
 
 // App config
 const app = express();
@@ -26,8 +26,8 @@ app.get("/", (request, response) => {
 
 // Add to collection
 app.post("/snkrs", (request, response) => {
-  const dbCard = request.body;
-  Card.create(dbCard, (error, data) => {
+  const Card = request.body;
+  Product.create(Card, (error, data) => {
     if (error) {
       response.status(500).send(error);
     } else {
@@ -38,7 +38,7 @@ app.post("/snkrs", (request, response) => {
 
 // Return entire collection
 app.get("/snkrs", (request, response) => {
-  Card.find((error, data) => {
+  Product.find((error, data) => {
     if (error) {
       response.status(500).send(error);
     } else {
@@ -49,7 +49,20 @@ app.get("/snkrs", (request, response) => {
 
 // Return document with param id
 app.get("/snkrs/:id", (request, response) => {
-  Card.findById(request.params.id)
+  Product.findById(request.params.id)
+    .then((data) => {
+      if (!data) {
+        return response.status(404).end();
+      } else {
+        return response.status(200).json(data);
+      }
+    })
+    .catch((error) => console.log(error));
+});
+
+// Return document with param value
+app.get("/snkrs/?s=:availability", (request, response) => {
+  Product.findOne(request.params.id)
     .then((data) => {
       if (!data) {
         return response.status(404).end();
