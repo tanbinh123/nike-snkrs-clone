@@ -3,12 +3,11 @@ import { useState, useEffect } from "react";
 import Axios from "../Axios";
 import Card from "./ProductCard";
 
-const Feed = (props) => {
+const Feed = () => {
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
     fetchData();
-    console.log(props);
   }, [cards]);
 
   async function fetchData() {

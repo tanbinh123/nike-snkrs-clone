@@ -3,12 +3,11 @@ import { useState, useEffect } from "react";
 import Axios from "../Axios";
 import Card from "./ProductCard";
 
-const Feed = (props) => {
+const InStock = () => {
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
     fetchData();
-    console.log(props);
   }, [cards]);
 
   async function fetchData() {
@@ -41,4 +40,4 @@ const Container = styled.div`
   }
 `;
 
-export default Feed;
+export default InStock;

@@ -20,7 +20,7 @@ const Menu = () => {
         </div>
       </Header>
       <Navbar>
-        <a id="logo" href="/">
+        <a id="logo" href="/launch">
           <img id="logo" src="/images/logo.svg" alt="logo" />
         </a>
         <ul className="nav">

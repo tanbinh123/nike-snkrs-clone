@@ -15,11 +15,6 @@ const Product = ({ match }) => {
     setItem(response.data);
   }
 
-  // Wait until all items fetched
-  if (item.main === undefined) {
-    return <h1>Loading</h1>;
-  }
-
   // Product title
   const product = item.name + " " + item.model;
 

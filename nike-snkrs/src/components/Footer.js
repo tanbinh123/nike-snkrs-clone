@@ -86,7 +86,8 @@ const Directory = styled.div`
 
     #main {
       text-transform: uppercase;
-      font-weight: 400;
+      font-weight: 500;
+      font-family: Helvetica;
       font-size: 12px;
       color: white;
     }
@@ -111,7 +112,7 @@ const Socials = styled.div`
     margin: 0 10px;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 975px) {
     display: none;
   }
 `;
@@ -140,7 +141,7 @@ const Legal = styled.div`
     }
   }
 
-  @media (max-width: 1000px) {
+  @media (max-width: 950px) {
     #other-links {
       display: none;
     }
