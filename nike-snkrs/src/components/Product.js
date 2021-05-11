@@ -27,9 +27,11 @@ const Product = ({ match }) => {
     <Container>
       <Wrap>
         <Gallery>
-          {Object.values(item.main).map((prodImg) => (
-            <img src={prodImg} alt={product} />
-          ))}
+          {Object.values(item.main).map((prodImg, key) => {
+            if (prodImg.length > 0) {
+              return <img key={key} src={prodImg} alt={product} />;
+            }
+          })}
         </Gallery>
         <Info>
           <p id="model">{item.model}</p>
@@ -43,14 +45,11 @@ const Product = ({ match }) => {
       </Wrap>
       <Wrap>
         <WideGallery>
-          {/* <img src={item.wideImg1} alt={item.name + " " + item.model} />
-          <img src={item.wideImg2} alt={item.name + " " + item.model} />
-          <img src={item.wideImg3} alt={item.name + " " + item.model} />
-          {item.wideImg4 === '' ? (
-            <img src="" alt="" />
-            ) : (
-            <img src={item.wideImg4} alt={item.name + " " + item.model} />
-          )} */}
+          {Object.values(item.wide).map((wideImg, key) => {
+            if (wideImg.length > 0) {
+              return <img key={key} src={wideImg} alt={product} />;
+            }
+          })}
         </WideGallery>
       </Wrap>
     </Container>
@@ -67,6 +66,10 @@ const Wrap = styled.div`
   grid-template-columns: 2fr 1fr;
   height: 100%;
   width: 100%;
+
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
 `;
 
 const Gallery = styled.div`
@@ -85,6 +88,10 @@ const Gallery = styled.div`
 
   div {
     background-color: rgb(0, 0, 0, 0.1);
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
   }
 `;
 
@@ -139,6 +146,10 @@ const Info = styled.div`
       background-color: rgb(0, 0, 0, 0.8);
     }
   }
+
+  @media (max-width: 1200px) {
+    margin-top: 0;
+  }
 `;
 
 const WideGallery = styled.div`
@@ -146,6 +157,7 @@ const WideGallery = styled.div`
 
   img {
     margin-bottom: 20px;
+    width: 100vw;
     object-fit: contain;
   }
 `;

@@ -3,15 +3,16 @@ import { useState, useEffect } from "react";
 import Axios from "../Axios";
 import Card from "./ProductCard";
 
-const Feed = () => {
+const Feed = (props) => {
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
     fetchData();
+    console.log(props);
   }, [cards]);
 
   async function fetchData() {
-    const response = await Axios.get("/snkrs");
+    const response = await Axios.get("/snkrs/s/feed");
     setCards(response.data);
   }
 

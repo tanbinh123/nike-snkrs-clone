@@ -6,12 +6,19 @@ const ProductCard = (props) => {
 
   return (
     <Card>
-      <Link to={`/product/${product._id}`}>
+      {props.product.type === 'sneaker' ? (
+        <Link to={`/product/${product._id}`}>
+          <img src={product.main.img1} alt={product.name + " " + product.model} />
+        </Link>
+      ) : (
         <img src={product.main.img1} alt={product.name + " " + product.model} />
-      </Link>
-      <div className="prod-info">
+      )}
+
+      <div className={product.type === "post" ? "prod-info post" : "prod-info"}>
         <span id="model">{product.model}</span>
         <span id="collection">{product.name}</span>
+      
+      {props.product.type === 'sneaker' ? (
         <Link to={`/product/${product._id}`}>
           {product.availability === "Sold Out" ? (
             <button id="cta-btn" className="sold-out">
@@ -21,6 +28,15 @@ const ProductCard = (props) => {
             <button id="cta-btn">{product.availability}</button>
           )}
         </Link>
+      ) : (
+        product.availability === "Sold Out" ? (
+            <button id="cta-btn" className="sold-out">
+              {product.availability}
+            </button>
+          ) : (
+            <button id="cta-btn">{product.availability}</button>
+          )       
+      )}
       </div>
     </Card>
   );
@@ -35,6 +51,7 @@ const Card = styled.div`
   img {
     max-width: 100%;
     object-fit: contain;
+    cursor: pointer;
   }
 
   .prod-info {
@@ -67,6 +84,19 @@ const Card = styled.div`
     }
   }
 
+  .post {
+    span {
+      display: none;
+    }
+
+    button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+  }
+
   &:hover {
     transition: opacity 500ms ease-in-out 0s;
 
@@ -93,10 +123,6 @@ const Card = styled.div`
       &:hover {
         background-color: #f3f3f3;
       }
-    }
-
-    .post {
-      display: block;
     }
   }
 `;

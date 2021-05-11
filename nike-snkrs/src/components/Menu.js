@@ -1,23 +1,7 @@
 import styled from "styled-components";
+import { NavLink } from 'react-router-dom';
 
 const Menu = () => {
-  var links = document.querySelectorAll("#page");
-
-  function setActive(page) {
-    for (var i = 0; i < links.length; i++) {
-      if (links[i] === page) {
-        page.classList.toggle("active");
-      } else {
-        links[i].classList.remove("active");
-      }
-    }
-  }
-
-  for (var i = 0; i < links.length; i++) {
-    links[i].addEventListener("click", function () {
-      setActive(this);
-    });
-  }
 
   return (
     <Container>
@@ -40,14 +24,14 @@ const Menu = () => {
           <img id="logo" src="/images/logo.svg" alt="logo" />
         </a>
         <ul className="nav">
-          <li id="page">
-            <a href="/">Feed</a>
+          <li>
+            <NavLink to='/launch' activeClassName='active'>Feed</NavLink>
           </li>
-          <li id="page">
-            <a href="/">In Stock</a>
+          <li>
+            <NavLink to='/s/in-stock' activeClassName='active'>In Stock</NavLink>
           </li>
-          <li id="page">
-            <a href="/">Upcoming</a>
+          <li>
+            <NavLink to='/s/upcoming' activeClassName='active'>Upcoming</NavLink>
           </li>
         </ul>
         <img id="grid-icon" src="/images/grid-sm.svg" alt="logo" />
@@ -82,7 +66,7 @@ const Header = styled.div`
   }
 
   #profile-pic {
-    height: 28px;
+    height: 25px;
   }
 
   .user {
@@ -141,13 +125,15 @@ const Navbar = styled.div`
       margin-left: 20px;
       margin-right: 20px;
       border-bottom: 2px solid transparent;
+      line-height: 56px;
 
       a {
         text-decoration: none;
         color: black;
+        padding-bottom: 18px;
       }
 
-      &:hover,
+      &:hover, 
       .active {
         border-bottom: 2px solid black;
         cursor: pointer;
