@@ -19,7 +19,7 @@ function App() {
           <Route exact path="/s/in-stock" component={InStock} />
           <Route exact path="/s/upcoming" component={Upcoming} />
           <Route exact path="/product/:id" component={Product} />
-          <Route exact path="/404" component={Invalid} />
+          <Route component={Invalid} />
         </Switch>
         <Footer />
       </Router>

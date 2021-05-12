@@ -2,22 +2,23 @@ import styled from "styled-components";
 import { NavLink } from 'react-router-dom';
 
 const Menu = () => {
-
   return (
     <Container>
       <Header>
-        <div className="user">
-          <img id="profile-pic" src="/images/profile-pic.png" alt="" />
+        <a className="user" href="/">
+          <img id="profile-pic" src="/images/profile-pic.jpeg" alt="" />
           <span>Michael Jordan</span>
-        </div>
+        </a>
         <div className="info">
           <a href="/">Help</a>
-          <img src="/images/cart-icon.svg" alt="" />
+          <a href="/">
+            <img src="/images/cart-icon.svg" alt="cart" />
+          </a>
         </div>
-        <div className="location">
-          <img src="/images/location-icon.svg" alt="" />
+        <a className="location" href="/">
+          <img src="/images/location-icon.svg" alt="location" />
           <span id="country">Canada</span>
-        </div>
+        </a>
       </Header>
       <Navbar>
         <a id="logo" href="/launch">
@@ -66,7 +67,9 @@ const Header = styled.div`
   }
 
   #profile-pic {
-    height: 25px;
+    height: 28px;
+    width: 28px;
+    border-radius: 50%;
   }
 
   .user {
@@ -74,13 +77,13 @@ const Header = styled.div`
     align-items: center;
     position: relative;
     margin: 0 20px;
-
-    #profile-pic {
-      margin: 0 10px;
-    }
   }
 
-  .info {
+  .user #profile-pic {
+    margin: 0 10px;
+  }
+
+  a, .info {
     display: flex;
     align-items: center;
   }
@@ -120,25 +123,25 @@ const Navbar = styled.div`
     align-items: center;
     list-style: none;
     padding: 0;
+  }
 
-    li {
-      margin-left: 20px;
-      margin-right: 20px;
-      border-bottom: 2px solid transparent;
-      line-height: 56px;
+  ul li {
+    margin-left: 20px;
+    margin-right: 20px;
+    border-bottom: 2px solid transparent;
+    line-height: 56px;
 
-      a {
-        text-decoration: none;
-        color: black;
-        padding-bottom: 18px;
-      }
-
-      &:hover, 
-      .active {
-        border-bottom: 2px solid black;
-        cursor: pointer;
-      }
+    &:hover, 
+    .active {
+      border-bottom: 2px solid black;
+      cursor: pointer;
     }
+  }
+
+  li a {
+    text-decoration: none;
+    color: black;
+    padding-bottom: 18px;
   }
 
   #grid-icon {

@@ -83,22 +83,22 @@ const Directory = styled.div`
   ul {
     list-style: none;
     margin-right: 50px;
+  }
 
-    #main {
-      text-transform: uppercase;
-      font-weight: 500;
-      font-family: Helvetica;
-      font-size: 12px;
+  ul #main {
+    text-transform: uppercase;
+    font-weight: 500;
+    font-family: Helvetica;
+    font-size: 12px;
+    color: white;
+  }
+
+  ul li {
+    margin: 7px 0;
+    color: #757575;
+
+    &:hover {
       color: white;
-    }
-
-    li {
-      margin: 7px 0;
-      color: #757575;
-
-      &:hover {
-        color: white;
-      }
     }
   }
 

@@ -1,18 +1,26 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import Axios from "../Axios";
+import Preloader from "./Preloader";
 
 const Product = ({ match }) => {
-  const [item, setItem] = useState({});
+  const [item, setItem] = useState([]);
 
   useEffect(() => {
     fetchItem();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [item]);
 
+  // Fetching API data
   async function fetchItem() {
-    const response = await Axios.get(`/snkrs/${match.params.id}`);
-    setItem(response.data);
+    await Axios.get(`/snkrs/${match.params.id}`).then((response) => {
+      setItem(response.data);
+    });
+  }
+
+  // If page not fully loaded
+  if (item.main === undefined) {
+    return <Preloader />;
   }
 
   // Product title
@@ -29,13 +37,15 @@ const Product = ({ match }) => {
           })}
         </Gallery>
         <Info>
-          <p id="model">{item.model}</p>
-          <p id="name">{item.name}</p>
-          <p id="price">{item.price}</p>
-          <div className="description">
-            <p>{item.description}</p>
+          <div className="prod-info">
+            <p id="model">{item.model}</p>
+            <p id="name">{item.name}</p>
+            <p id="price">{item.price}</p>
+            <div className="description">
+              <p>{item.description}</p>
+            </div>
+            <button>Add to Bag</button>
           </div>
-          <div className="checkout">Add to Bag</div>
         </Info>
       </Wrap>
       <Wrap>
@@ -97,8 +107,15 @@ const Info = styled.div`
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 40px;
-  margin-top: 15vh;
+
+  .prod-info {
+    position: sticky;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 150px 40px;
+    top: 0;
+  }
 
   .product {
     display: flex;
@@ -125,7 +142,7 @@ const Info = styled.div`
     padding: 20px;
   }
 
-  .checkout {
+  button {
     background-color: black;
     color: white;
     display: flex;
@@ -135,15 +152,25 @@ const Info = styled.div`
     font-size: 16px;
     border: none;
     height: 60px;
-    width: 75%;
-
+    padding: 25px;
     &:hover {
       background-color: rgb(0, 0, 0, 0.8);
     }
   }
 
   @media (max-width: 1200px) {
-    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+
+    .prod-info {
+      margin: 0;
+      padding-top: 0;
+      padding-bottom: 25px;
+    }
   }
 `;
 

@@ -62,7 +62,7 @@ app.get("/snkrs/:id", (request, response) => {
 
 // Return document(s) with page param - feed, in-stock, upcoming
 app.get("/snkrs/s/:page", (request, response) => {
-  Product.find({page: request.params.page})
+  Product.find({ page: request.params.page })
     .then((data) => {
       if (!data) {
         return response.status(404).end();

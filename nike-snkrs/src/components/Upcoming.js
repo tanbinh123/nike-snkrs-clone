@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useState, useEffect } from "react";
 import Axios from "../Axios";
 import Card from "./ProductCard";
+import Preloader from "./Preloader";
 
 const Feed = () => {
   const [cards, setCards] = useState([]);
@@ -10,9 +11,16 @@ const Feed = () => {
     fetchData();
   }, [cards]);
 
+  // Fetching API data
   async function fetchData() {
-    const response = await Axios.get("/snkrs/s/upcoming");
-    setCards(response.data);
+    await Axios.get("/snkrs/s/upcoming").then((response) => {
+      setCards(response.data);
+    });
+  }
+
+  // If not all pages are loaded
+  if (cards.length < 9) {
+    return <Preloader />;
   }
 
   return (
