@@ -113,7 +113,7 @@ const Info = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 150px 40px;
+    padding: 25px 40px;
     top: 0;
   }
 

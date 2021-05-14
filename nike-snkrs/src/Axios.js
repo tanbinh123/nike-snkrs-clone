@@ -1,7 +1,7 @@
 import Axios from "axios";
 
 const Instance = Axios.create({
-  baseURL: "http://localhost:8001",
+  baseURL: "https://nike-snkrs-clone.herokuapp.com/",
 });
 
 export default Instance;
