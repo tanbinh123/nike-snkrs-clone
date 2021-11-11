@@ -7,7 +7,7 @@
 
 **Backend**: MongoDB, Express, Node
 
-**Hosting**: Heroku (backend), Firebase (frontend)
+**Hosting**: Heroku (API), Firebase (Frontend)
 
 ## Screenshots
 ### Product Wall
